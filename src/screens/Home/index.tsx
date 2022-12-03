@@ -22,7 +22,7 @@ const Home = ({navigation}: HomeProps) => {
           buttonColor={'#FFFFFF'}
           title={'Register'}
           titleColor={'#FFFFFF'}
-          buttonStyle={{width: wdp(25)}}
+          buttonStyle={{width: wdp(23)}}
           onPress={() => console.log('Register')}
         />
       </View>

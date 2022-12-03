@@ -4,7 +4,7 @@ import {getByScreenSize} from '../../utils/responsive';
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    height: getByScreenSize(55, 80),
+    height: getByScreenSize(50, 80),
     alignItems: 'center',
     justifyContent: 'center',
   },
