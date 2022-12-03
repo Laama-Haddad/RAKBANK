@@ -9,13 +9,11 @@
  */
 // @ts-ignore
 
-import React, {useState} from 'react';
-import Login from './src/screens/Login';
+import React from 'react';
+import AppNavigator from './src/router';
 
 const App = () => {
-    return (
-        <Login/>
-    );
+  return <AppNavigator />;
 };
 
 export default App;

@@ -6,7 +6,6 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     alignItems: 'center',
-    justifyContent: 'space-between',
     backgroundColor: '#F9F4EF',
     padding: '5%',
   },
@@ -19,6 +18,7 @@ const styles = StyleSheet.create({
   bottomContainer: {
     width: '100%',
     alignItems: 'center',
+    marginTop: '10%',
   },
   forgotRowContainer: {
     flexDirection: 'row',

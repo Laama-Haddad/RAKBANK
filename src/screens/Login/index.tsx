@@ -49,11 +49,13 @@ const Login = ({navigation}: LoginProps) => {
         height={hdp(65)}
       />
       <View style={styles.topContainer}>
-        <Icon
-          name={'arrow-back-ios'}
-          size={getByScreenSize(20, 30)}
-          color={'#FFFFFF'}
-        />
+        <TouchableOpacity onPress={() => navigation?.goBack()}>
+          <Icon
+            name={'arrow-back-ios'}
+            size={getByScreenSize(20, 30)}
+            color={'#FFFFFF'}
+          />
+        </TouchableOpacity>
         <Button
           type={'outline'}
           buttonColor={'#FFFFFF'}
@@ -114,7 +116,7 @@ const Login = ({navigation}: LoginProps) => {
           title={'Submit'}
           titleColor={'#FFFFFF'}
           onPress={() => formComplete && submit()}
-          buttonStyle={{width: wdp(85), marginTop: '3%'}}
+          buttonStyle={{width: wdp(85), marginTop: '5%'}}
         />
 
         <View style={styles.forgotRowContainer}>

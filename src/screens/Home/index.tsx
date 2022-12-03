@@ -39,7 +39,7 @@ const Home = ({navigation}: HomeProps) => {
           buttonColor={'#222222'}
           title={'Login with User ID'}
           titleColor={'#FFFFFF'}
-          onPress={() => console.log('sign in')}
+          onPress={() => navigation?.navigate('login')}
           buttonStyle={{width: wdp(85)}}
         />
         <TouchableOpacity
