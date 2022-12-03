@@ -12,7 +12,7 @@ const Home = ({navigation}: HomeProps) => {
   return (
     <View style={styles.container}>
       <Background
-        style={{position:'absolute',top:0,left:0}}
+        style={{position: 'absolute', top: 0, left: 0}}
         width={wdp(100)}
         height={hdp(65)}
       />
