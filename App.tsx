@@ -9,14 +9,19 @@
  */
 // @ts-ignore
 
-import React from 'react';
+import React, {useState} from 'react';
 import {SafeAreaView} from 'react-native';
 import Button from './src/components/Button';
 import {wdp} from './src/utils/responsive';
+import GenericTextInput from './src/components/GenericTextInput';
 
 const App = () => {
+  const [showLabel, setShowLabel] = useState(false);
+  const [value, setValue] = useState('');
+  const refInput = React.useRef(null);
+
   return (
-    <SafeAreaView style={{backgroundColor: 'white', paddingHorizontal: '10%'}}>
+    <SafeAreaView style={{backgroundColor: 'red', alignItems: 'center'}}>
       <Button
         title={'Login With UserId'}
         titleColor={'white'}
@@ -32,6 +37,25 @@ const App = () => {
         type={'outline'}
         buttonColor={'red'}
         onPress={() => console.log('register')}
+      />
+      <GenericTextInput
+        placeholder={showLabel ? ' ' : 'password'}
+        ref={refInput}
+        onFocus={() => {
+          setShowLabel(true);
+        }}
+        onBlur={() => {
+          setShowLabel(false);
+        }}
+        value={value}
+        onChangeText={text => setValue(text)}
+        onEndEditing={value =>
+          value === '' ? setShowLabel(false) : setShowLabel(true)
+        }
+        showLabel={showLabel}
+        secureTextEntry
+        label={'password'}
+        containerStyle={{width: wdp(90), marginVertical: 10}}
       />
     </SafeAreaView>
   );
