@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   title: {
-    fontSize: getByScreenSize(16, 25),
+    fontSize: getByScreenSize(16, 30),
   },
 });
 

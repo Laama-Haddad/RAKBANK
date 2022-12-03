@@ -1,0 +1,49 @@
+<svg width="375" height="525" viewBox="0 0 375 525" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+<ellipse cx="179.985" cy="-40.7384" rx="530.015" ry="565.262" fill="url(#paint0_linear_7773_334432)"/>
+
+<mask id="mask0_7773_334432" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="-351" y="-607" width="1061" height="1132">
+
+<ellipse cx="179.985" cy="-40.7384" rx="530.015" ry="565.262" fill="white"/>
+
+</mask>
+
+<g mask="url(#mask0_7773_334432)">
+
+<g opacity="0.705148">
+
+<ellipse cx="116.403" cy="108.205" rx="366.448" ry="390.46" fill="url(#paint1_linear_7773_334432)"/>
+
+<ellipse cx="116.403" cy="108.205" rx="366.448" ry="390.46" fill="#EB151D"/>
+
+</g>
+
+<rect x="-249.592" y="-308.694" width="751.404" height="827.594" stroke="#979797" stroke-opacity="0.01" stroke-width="0.905797"/>
+
+<ellipse opacity="0.24714" cx="77.5745" cy="157.853" rx="300.439" ry="320.126" fill="#FF6A00"/>
+
+<rect x="-282.596" y="-213.537" width="702.868" height="720.023" stroke="#979797" stroke-opacity="0.01" stroke-width="0.905797"/>
+
+</g>
+
+<defs>
+
+<linearGradient id="paint0_linear_7773_334432" x1="62.4697" y1="-96.4248" x2="5.42415" y2="538.377" gradientUnits="userSpaceOnUse">
+
+<stop stop-color="#C10910"/>
+
+<stop offset="1" stop-color="#9E001F"/>
+
+</linearGradient>
+
+<linearGradient id="paint1_linear_7773_334432" x1="149.727" y1="-672.715" x2="-624.956" y2="-11.7891" gradientUnits="userSpaceOnUse">
+
+<stop stop-color="#EB151D"/>
+
+<stop offset="1" stop-color="#A00006"/>
+
+</linearGradient>
+
+</defs>
+
+</svg>
