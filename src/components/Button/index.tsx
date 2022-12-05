@@ -5,6 +5,7 @@ import styles from './styles';
 import {getByScreenSize} from '../../utils/responsive';
 
 const Button = ({
+  disabled = false,
   type,
   buttonColor,
   title,
@@ -15,6 +16,7 @@ const Button = ({
 }: ButtonProps) => {
   return (
     <TouchableOpacity
+      disabled={disabled}
       style={[
         type === 'solid' && {
           backgroundColor: buttonColor,

@@ -16,6 +16,7 @@ const GenericTextInput = forwardRef(
       keyboardType,
       returnKeyType,
       noEye,
+      autoFocus = false,
       showLabel,
       ...props
     }: TextInputProps,
@@ -32,12 +33,13 @@ const GenericTextInput = forwardRef(
       <View style={[styles.container, containerStyle]}>
         {showLabel && <Text style={[styles.label, labelStyle]}>{label}</Text>}
         <TextInput
+           autoFocus={autoFocus}
           {...props}
           selectionColor={'#555555'}
           ref={ref}
           returnKeyType={returnKeyType || 'done'}
           keyboardType={keyboardTypeIOS.current}
-          style={[styles.textInput,inputStyle]}
+          style={[styles.textInput, inputStyle]}
           placeholderTextColor={'#dddddd'}
           secureTextEntry={withEye && !passwordVisible}
         />

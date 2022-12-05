@@ -1,6 +1,7 @@
 import {StyleProp} from 'react-native';
 
 export interface ButtonProps {
+  disabled?: boolean;
   type: 'solid' | 'outline';
   buttonColor: string;
   title: string;

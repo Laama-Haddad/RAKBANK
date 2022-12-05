@@ -19,4 +19,5 @@ export interface TextInputProps extends TextInputAndroidProps {
   showLabel: boolean;
   onFocus: () => void;
   onBlur: () => void;
+  autoFocus?:boolean;
 }
