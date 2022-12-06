@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     color: '#222222',
   },
   textInput: {
-    fontSize: getByScreenSize(20, 30),
+    fontSize: getByScreenSize(18, 30),
     height: getByScreenSize(40, 55),
     paddingTop: '2%',
     alignItems: 'flex-end',

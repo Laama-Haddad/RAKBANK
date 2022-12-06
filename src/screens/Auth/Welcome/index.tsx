@@ -1,20 +1,20 @@
 import React from 'react';
-import {HomeProps} from '../../resources/interfaces/screens/home';
 import {Text, TouchableOpacity, View} from 'react-native';
 import styles from './styles';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import Button from '../../components/Button';
-import {getByScreenSize, hdp, wdp} from '../../utils/responsive';
+import Button from '../../../components/Button';
+import {getByScreenSize, hdp, wdp} from '../../../utils/responsive';
 // @ts-ignore
-import Background from '../../resources/assets/background.svg';
+import Background from '../../../resources/assets/background.svg';
+import {WelcomeProps} from '../../../resources/interfaces/screens/welcome';
 
-const Home = ({navigation}: HomeProps) => {
+const Welcome = ({navigation}: WelcomeProps) => {
   return (
     <View style={styles.container}>
       <Background
         style={{position: 'absolute', top: 0, left: 0}}
         width={wdp(100)}
-        height={hdp(65)}
+        height={hdp(62)}
       />
       <View style={styles.topContainer}>
         <Button
@@ -23,7 +23,7 @@ const Home = ({navigation}: HomeProps) => {
           title={'Register'}
           titleColor={'#FFFFFF'}
           buttonStyle={{width: wdp(23)}}
-          onPress={() => console.log('Register')}
+          onPress={() => console.log('register')}
         />
       </View>
       <View style={styles.textContainer}>
@@ -56,4 +56,4 @@ const Home = ({navigation}: HomeProps) => {
     </View>
   );
 };
-export default Home;
+export default Welcome;

@@ -14,18 +14,20 @@ import AppNavigator from './router';
 import {store} from './redux/store';
 import {Provider} from 'react-redux';
 import {Platform, StatusBar, StatusBarStyle, UIManager} from 'react-native';
-// import { NativeBaseProvider } from 'native-base';
 import {getLocalData} from './utils/storage';
 import {keys} from './api/keys';
-import {setAuthStatus} from './screens/Login/action';
+import {setAuthStatus} from './screens/Auth/Login/action';
 
 const STYLES: StatusBarStyle[] = ['default', 'dark-content', 'light-content'];
 const TRANSITIONS: any = ['fade', 'slide', 'none'];
 
 const App = () => {
   const copyDataFromLocalToReducer = async () => {
-    let logged = await getLocalData(keys.AUTH);
-    setAuthStatus(logged ? logged : {logged: false});
+    let res = await getLocalData(keys.AUTH);
+    setAuthStatus({
+      logged: res?.logged ? res?.logged : false,
+      userInfo: res?.userInfo ? res?.userInfo : {},
+    });
   };
   useEffect(() => {
     if (Platform.OS === 'android') {
@@ -41,11 +43,12 @@ const App = () => {
         animated
         translucent
         backgroundColor={'transparent'}
-        barStyle={STYLES[1]}
+        barStyle={STYLES[2]}
         showHideTransition={TRANSITIONS[0]}
       />
       <AppNavigator />
-    </Provider>)
+    </Provider>
+  );
 };
 
 export default App;

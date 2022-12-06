@@ -26,4 +26,11 @@ export const setLocalData = async (key, value) => {
     return Promise.reject(error);
   }
 };
-
+export const removeLocalData = async key => {
+  try {
+    await EncryptedStorage.removeItem(key);
+    // Congrats! You've just removed your first value!
+  } catch (error) {
+    // There was an error on the native side
+  }
+};

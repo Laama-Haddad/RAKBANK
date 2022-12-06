@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {getByScreenSize, hdp} from '../../utils/responsive';
+import {getByScreenSize, hdp} from '../../../utils/responsive';
 
 const styles = StyleSheet.create({
   container: {
@@ -8,6 +8,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F9F4EF',
     padding: '5%',
+    paddingVertical: '7%',
   },
   topContainer: {
     alignItems: 'flex-end',

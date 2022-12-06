@@ -1,24 +1,32 @@
-import React from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {StackItem} from '../resources/interfaces/stackItem';
 import {navigationRef} from '../navigation';
-import Home from '../screens/Home';
-import Login from '../screens/Login';
+import Welcome from '../screens/Auth/Welcome';
+import Login from '../screens/Auth/Login';
 import {TabItem} from '../resources/interfaces/tabItem';
+import LoadingIcon from 'react-native-vector-icons/Feather';
 import ProductIcon from 'react-native-vector-icons/Entypo';
 import LiveChatIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import TokenIcon from 'react-native-vector-icons/FontAwesome5';
 import LocateIcon from 'react-native-vector-icons/FontAwesome5';
 import {getByScreenSize} from '../utils/responsive';
+import {useSelector} from 'react-redux';
+import {ActivityIndicator, Platform, Text, View} from 'react-native';
+import {keys} from '../api/keys';
+import {getLocalData} from '../utils/storage';
+import config from '../config';
+import Home from '../screens/Content/Home';
 
 const Stack = createStackNavigator();
 const Tabs = createBottomTabNavigator();
-const Products = () => <></>;
+
 const LiveChat = () => <></>;
 const Token = () => <></>;
 const LocateUs = () => <></>;
+
 const tabsScreens: TabItem[] = [
   {
     id: 0,
@@ -63,7 +71,7 @@ const HomeTabs = () => {
   return (
     <Tabs.Navigator
       screenOptions={{
-        tabBarActiveTintColor: '#dddddd',
+        tabBarActiveTintColor: '#888888',
         tabBarInactiveTintColor: '#222222',
       }}>
       {tabsScreens.map((screen, idx) => (
@@ -77,7 +85,7 @@ const HomeTabs = () => {
             tabBarLabelStyle: {fontSize: getByScreenSize(13, 25)},
             tabBarIcon: ({focused}) =>
               screen.icon(
-                focused ? '#dddddd' : '#222222',
+                focused ? '#888888' : '#222222',
                 getByScreenSize(20, 25),
               ),
             tabBarStyle: {height: getByScreenSize(50, 80)},
@@ -87,11 +95,11 @@ const HomeTabs = () => {
     </Tabs.Navigator>
   );
 };
-const screens: StackItem[] = [
+const authScreens: StackItem[] = [
   {
     id: 0,
-    name: 'homeTabs',
-    component: HomeTabs,
+    name: 'welcome',
+    component: Welcome,
   },
 ];
 const modalScreens: StackItem[] = [
@@ -101,36 +109,103 @@ const modalScreens: StackItem[] = [
     component: Login,
   },
 ];
-
+const screens: StackItem[] = [
+  {
+    id: 0,
+    name: 'homeTabs',
+    component: HomeTabs,
+  },
+];
 const AppNavigator = () => {
+  const userStatus = useSelector(state => state.auth);
+
+  const [router, setRouter] = useState<string>('');
+  const checkUser = async () => {
+    const user = await getLocalData(keys.AUTH);
+
+    if (!!user && user.logged) {
+      setRouter('home');
+    } else {
+      setRouter('auth');
+    }
+  };
+  useEffect(() => {
+    if (config.debug) {
+      console.log('logged =>', userStatus.logged);
+      console.log('userInfo =>', userStatus.userInfo);
+    }
+    checkUser().then();
+  }, [userStatus]);
+  const selectRouter = useCallback(() => {
+    if (router === 'home') {
+      return (
+        <Stack.Navigator
+          screenOptions={{gestureEnabled: Platform.OS === 'ios'}}>
+          <Stack.Group>
+            {screens.map((screen, idx) => (
+              <Stack.Screen
+                key={idx}
+                options={{
+                  headerShown: false,
+                }}
+                name={screen.name}
+                component={screen.component}
+              />
+            ))}
+          </Stack.Group>
+        </Stack.Navigator>
+      );
+    } else if (router === 'auth') {
+      return (
+        <Stack.Navigator screenOptions={{gestureEnabled: true}}>
+          <Stack.Group>
+            {authScreens.map((screen, idx) => (
+              <Stack.Screen
+                key={idx}
+                options={{
+                  headerShown: false,
+                }}
+                name={screen.name}
+                component={screen.component}
+              />
+            ))}
+          </Stack.Group>
+          <Stack.Group
+            screenOptions={{
+              presentation: 'modal',
+            }}>
+            {modalScreens.map((screen, idx) => (
+              <Stack.Screen
+                key={`screen${idx}`}
+                options={{
+                  headerShown: false,
+                }}
+                name={screen.name}
+                component={screen.component}
+              />
+            ))}
+          </Stack.Group>
+        </Stack.Navigator>
+      );
+    }
+    return (
+      <View
+        style={{
+          width: '100%',
+          height: '100%',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}>
+        <ActivityIndicator color={'#C3014B'} size={'large'}/>
+        <Text style={{fontSize: 30, marginTop: '2%'}}>Loading...</Text>
+      </View>
+    );
+  }, [router]);
+
   return (
     <NavigationContainer ref={navigationRef}>
-      <Stack.Navigator screenOptions={{gestureEnabled: true}}>
-        <Stack.Group>
-          {screens.map((screen, idx) => (
-            <Stack.Screen
-              key={idx}
-              options={{
-                headerShown: false,
-              }}
-              name={screen.name}
-              component={screen.component}
-            />
-          ))}
-          {modalScreens.map((screen, idx) => (
-            <Stack.Screen
-              key={idx}
-              options={{
-                headerShown: false,
-              }}
-              name={screen.name}
-              component={screen.component}
-            />
-          ))}
-        </Stack.Group>
-      </Stack.Navigator>
+      {selectRouter()}
     </NavigationContainer>
   );
 };
-
 export default AppNavigator;

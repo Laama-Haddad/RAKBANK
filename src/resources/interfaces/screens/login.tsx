@@ -1,10 +1,12 @@
-import { NavigationProp } from "@react-navigation/native";
+import {NavigationProp} from '@react-navigation/native';
+import {UserInfo} from '../userInfo';
 
 export interface AuthState {
-    logged: boolean;
+  logged: boolean;
+  userInfo: UserInfo | {};
 }
 
 export interface LoginProps {
-    navigation?: NavigationProp<any>;
-    auth: AuthState;
+  navigation?: NavigationProp<any>;
+  auth: AuthState;
 }

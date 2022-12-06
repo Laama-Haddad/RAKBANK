@@ -1,13 +1,14 @@
-import {store} from '../../redux/store';
+import {store} from '../../../redux/store';
 import {setAuth} from './reducer';
-import {AuthState} from '../../resources/interfaces/screens/login';
-import {services} from '../../api';
-import config from '../../config';
+import {AuthState} from '../../../resources/interfaces/screens/login';
+import {services} from '../../../api';
+import config from '../../../config';
 
-export const setAuthStatus = ({logged}: AuthState) => {
+export const setAuthStatus = ({logged, userInfo}: AuthState) => {
   store.dispatch(
     setAuth({
       logged,
+      userInfo
     }),
   );
 };
