@@ -14,7 +14,7 @@ const Welcome = ({navigation}: WelcomeProps) => {
       <Background
         style={{position: 'absolute', top: 0, left: 0}}
         width={wdp(100)}
-        height={hdp(62)}
+        height={hdp(55)}
       />
       <View style={styles.topContainer}>
         <Button
